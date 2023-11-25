@@ -20,10 +20,6 @@ git branch -M main
 git push -uf origin main
 ```
 
-## Integrate with your tools
-
-- [ ] [Set up project integrations](https://gitlab.rinznetwork.com/kayden02302/admin-panel/-/settings/integrations)
-
 ## Collaborate with your team
 
 - [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
