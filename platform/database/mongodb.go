@@ -22,7 +22,7 @@ func init() {
 }
 
 func initDatabase() {
-	url := fmt.Sprintf("%s://%s:%s@%s/?retryWrites=true&w=majority", config.DbType, config.DbUser, config.DbPass, config.DbHost)
+	url := fmt.Sprintf("%s://%s:%s@%s:%s/?retryWrites=true&w=majority", config.DbType, config.DbUser, config.DbPass, config.DbHost, config.DbPort)
 	fmt.Printf("URL MongoDB %s\n", url)
 	ctx, _ := NewContext()
 	var err error

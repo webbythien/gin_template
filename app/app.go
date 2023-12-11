@@ -1,6 +1,8 @@
 package app
 
 import (
+	"admin-panel/v1/pkg/config"
+	"admin-panel/v1/pkg/workers"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"log"
@@ -54,4 +56,8 @@ func (app *App) Run(port string) {
 	if err != nil {
 		log.Fatal(err)
 	}
+}
+
+func (app *App) Worker(wcf *config.WorkerConfig) {
+	workers.WorkerConfig = wcf
 }

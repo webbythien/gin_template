@@ -1,0 +1,58 @@
+version: "3.8"
+
+services:
+  redis:
+    container_name: redis_server
+    image: bitnami/redis:7.2
+    ports:
+      - 6379:6379
+    environment:
+      #- ALLOW_EMPTY_PASSWORD=yes
+      - REDIS_USER=thien
+      - REDIS_PASSWORD=myRedisHuyen
+      - REDIS_DISABLE_COMMANDS=FLUSHDB,FLUSHALL
+    volumes:
+      - redis_data:/bitnami/redis/data
+    networks:
+      - database_network
+
+  mongodb:
+    container_name: mongodb_server
+    image: mongo:5.0.19
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: myMongoHuyen
+    restart: always
+
+    volumes:
+      - ./data/mongo:/data/db
+      - ./data/mongo_config:/data/configdb
+    networks:
+      - database_network
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: rabbitmq_server
+    restart: always
+    ports:
+      - 5672:5672
+      - 15672:15672
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: myRabbitHuyen
+    volumes:
+      - rabbit_data:/alpine/rabbit/data
+    networks:
+      - database_network
+
+networks:
+  database_network:
+    driver: bridge
+
+volumes:
+  redis_data:
+    driver: local
+  rabbit_data:
+    driver: local

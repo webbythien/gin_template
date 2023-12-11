@@ -18,3 +18,7 @@ func ApiRoute(e *gin.Engine) {
 		pprof.Trace(context.Writer, context.Request)
 	})
 }
+
+func ChatRoute(e *gin.Engine) {
+	e.POST("/send_chat", controller.SendMessage)
+}
